@@ -1,0 +1,23 @@
+{
+  "name": "blast-radius-app",
+  "version": "1.0.0",
+  "description": " <fill in> ",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.15.3",
+    "fs": "0.0.1-security",
+    "mongod": "^2.0.0",
+    "mongodb": "^2.2.31",
+    "prettyjson": "^1.2.1",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
