@@ -28,11 +28,11 @@ app.get('/', function(req, res) {
   res.send(req.body);
 });
 
-app.post('/users', function(req, res) {
-  console.log(req.body); 
- res.send(req.body);
+app.post('/search', function(req, res) {
+  console.log(req.body[address]); 
+  res.send(req.body[address]);
 
-   function scrape() {
+  function scrape() {
     url = 'http://api.dronestre.am/data';
     request(url, function(error, response, body){
       if(!error){
@@ -52,6 +52,7 @@ app.post('/users', function(req, res) {
     })
   }
 
+  // if (true) {}
   var options = { 
     provider: 'google',
  
@@ -68,34 +69,14 @@ app.post('/users', function(req, res) {
     console.log(res);
   });
    
-  // Or using Promise
-  geocoder.geocode('29 champs elysée paris')
-    .then(function(res) {
-      console.log(res);
-    })
-    .catch(function(err) {
-      console.log(err);
-    });
- 
-// // output :
-// [{
-//   latitude: 48.8698679,
-//   longitude: 2.3072976,
-//   country: 'France',
-//   countryCode: 'FR',
-//   city: 'Paris',
-//   zipcode: '75008',
-//   streetName: 'Champs-Élysées',
-//   streetNumber: '29',
-//   administrativeLevels: {
-//     level1long: 'Île-de-France',
-//     level1short: 'IDF',
-//     level2long: 'Paris',
-//     level2short: '75'
-//   },
-//   provider: 'google'
-// }]
-
+  // // Or using Promise
+  // geocoder.geocode('29 champs elysée paris')
+  //   .then(function(res) {
+  //     console.log(res);
+  //   })
+  //   .catch(function(err) {
+  //     console.log(err);
+  //   });
 });
 
 
