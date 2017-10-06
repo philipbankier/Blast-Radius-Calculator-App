@@ -30,12 +30,28 @@ app.get('/', function(req, res) {
 app.post('/users', function(req, res) {
   console.log(req.body); 
  res.send(req.body);
+
+   function scrape() {
+    url = 'http://api.dronestre.am/data';
+    request(url, function(error, response, body){
+      if(!error){
+        var $ = cheerio.load(body);
+      }
+      ;
+    var obj = JSON.parse(body);
+    console.log(obj[0].country);
+    var options = {
+      noColor: false
+      };
+    fs.writeFile('output.json', body , function(err){
+      console.log('File successfully written! - Check your project directory for the output.json file');
+    })
+
+    res.send('Check the terminal')
+    })
+  }
 });
 
-// app.post('/restart', function(req, res) {
-//   console.log("TEST")
-//  res.send(req.body);
-// });
 
 // start the server
 app.listen(port);

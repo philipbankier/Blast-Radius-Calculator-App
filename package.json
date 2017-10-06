@@ -19,5 +19,13 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philipbankier/Blast-Radius-Calculator-App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/philipbankier/Blast-Radius-Calculator-App/issues"
+  },
+  "homepage": "https://github.com/philipbankier/Blast-Radius-Calculator-App#readme"
 }
