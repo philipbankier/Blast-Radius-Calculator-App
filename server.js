@@ -28,9 +28,9 @@ app.get('/', function(req, res) {
   res.send(req.body);
 });
 
-app.post('/search', function(req, res) {
-  console.log(req.body[address]); 
-  res.send(req.body[address]);
+app.post('/address', function(req, res) {
+  console.log(req.body.address); 
+  res.send(req.body.address);
 
   function scrape() {
     url = 'http://api.dronestre.am/data';
@@ -65,7 +65,7 @@ app.post('/search', function(req, res) {
   var geocoder = NodeGeocoder(options);
    
   // Using callback
-  geocoder.geocode('29 champs elysée paris', function(err, res) {
+  geocoder.geocode(req.body.address, function(err, res) {
     console.log(res);
   });
    

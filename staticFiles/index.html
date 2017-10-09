@@ -54,7 +54,7 @@
       <!-- FORM DIV -->
       <div class="col-sm-6 col-sm-offset-3 text-center container bg-2">
         <!-- FORM -->              <!-- action = the url where we want to POST -->
-        <form name="myForm" id="myForm" action="http://localhost:5000/search" method="POST">
+        <form name="myForm" id="myForm" action="http://localhost:5000/address" method="POST">
 
           <!-- NAME -->
           <div id="address-group" class="form-group">
@@ -101,8 +101,7 @@
           type        : 'POST',
           url         : formURL, 
           data        : formData,
-          dataType    : 'json',
-          encode      : true,
+          crossDomain : true,   
           success: function(data) {
             console.log(data);
             console.log('process sucess');
