@@ -79,9 +79,5 @@ app.post('/address', function(req, res) {
 
 // start the server
 app.listen(port, function() {
-console.log('Server started! At http://localhost:' + port);
-   
-   if (process.send) {
-        process.send('online');
-    }
+  console.log('Server started! At http://localhost:' + port);
 });
