@@ -1,13 +1,17 @@
 var express = require('express');
 var NodeGeocoder = require('node-geocoder');
 var app = express();
-var fs      = require('fs');
+var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
 var port = process.env.PORT || 5000;
 var bodyParser = require('body-parser');
+const ejsLint = require('ejs-lint');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+// set linter
+ejsLint('views/home.ejs'); 
 
 // set the view engine to ejs
 app.set('view engine', 'ejs')
@@ -61,7 +65,6 @@ app.post('/address', function(req, res) {
     })
   }
 
-  // if (true) {}
   var options = { 
     provider: 'google',
     httpAdapter: 'https', // Default
@@ -74,7 +77,16 @@ app.post('/address', function(req, res) {
   // Using callback
   geocoder.geocode(req.body.address, function(err, res) {
     console.log(res);
+    // console.log(res.body.longitude);
+    // var res = JSON.parse(res, function(data){
+    //   console.log(data);
+    // })
   });
+
+//   // render the `home.ejs` template with coordinate data
+//   res.render('home', {
+//     address: home.address
+//   }) 
 });
 
 // start the server

@@ -31,33 +31,48 @@ var jMap = $(".map"),
      return [ xymin, xymax ];
   };
 
+  // points
+  aa = [-122.490402, 37.786453];
+  bb = [-122.389809, 37.72728];
+  console.log(projection(aa),projection(bb));
+
   d3.json(mapJsonUrl, function (error, worldJson) {
-     if (error) throw error;
+    if (error) throw error;
     var projection = getProjection(),
         path = d3.geoPath().projection( projection );
     
     svg.selectAll( 'path.land' )
-        .data( topojson.feature( worldJson, worldJson.objects.countries ).features )
-        .enter().append( 'path' )
-        .attr( 'class', 'land' )
-        .attr( 'd', path )
-        .on('click', function(d) {
-          d3.select(this).classed("selected", true)
-        })
-        .on('mouseover', function(d) {
-          d3.select(this).classed("hovered", true)
-        })
-        .on('mouseout', function(d) {
-          d3.select(this).classed("hovered", false)
-        });
-  });
-// zoom does not work yet :/   
-var zoom = d3.behavior.zoom()
-    .on("zoom",function() {
-        g.attr("transform","translate("+ 
-            d3.event.translate.join(",")+")scale("+d3.event.scale+")");
-        g.selectAll("path")  
-            .attr("d", path.projection(projection)); 
-});
+      .data( topojson.feature( worldJson, worldJson.objects.countries ).features )
+      .enter().append( 'path' )
+      .attr( 'class', 'land' )
+      .attr( 'd', path )
+      .on('click', function(d) {
+        d3.select(this).classed("selected", true)
+      })
+      .on('mouseover', function(d) {
+        d3.select(this).classed("hovered", true)
+      })
+      .on('mouseout', function(d) {
+        d3.select(this).classed("hovered", false)
+      });
 
-svg.call(zoom)
+    // add circles to svg
+    svg.selectAll("circle")
+      .data([aa,bb]).enter()
+      .append("circle")
+      .attr("cx", function (d) { console.log(projection(d)); return projection(d)[0]; })
+      .attr("cy", function (d) { return projection(d)[1]; })
+      .attr("r", "8px")
+      .attr("fill", "red")
+  });
+// // zoom does not work yet :/   
+// var zoom = d3.behavior.zoom()
+//     .on("zoom",function() {
+//         g.attr("transform","translate("+ 
+//             d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+//         g.selectAll("path")  
+//             .attr("d", path.projection(projection)); 
+// });
+
+// svg.call(zoom)
+
